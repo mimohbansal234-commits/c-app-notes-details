@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>C Programming Study App</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    line-height:1.7;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#172554,#2563eb);
+    color:white;
+    padding:35px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:17px;
+}
+
+/* NAVIGATION */
+nav{
+    background:#111827;
+    padding:12px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    display:inline-block;
+    padding:9px 14px;
+    margin:3px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    background:#2563eb;
+}
+
+/* CONTAINER */
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:25px auto;
+}
+
+/* SEARCH */
+.search-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px;
+    border:2px solid #d1d5db;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.search-box input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+/* SECTIONS */
+section{
+    background:white;
+    margin-bottom:30px;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+
+section h2{
+    color:#1d4ed8;
+    border-bottom:3px solid #2563eb;
+    padding-bottom:10px;
+    margin-bottom:25px;
+}
+
+section h3{
+    color:#1e40af;
+    margin-top:28px;
+    margin-bottom:12px;
+}
+
+section h4{
+    color:#374151;
+    margin-top:20px;
+}
+
+/* TOPIC */
+.topic{
+    border-left:5px solid #2563eb;
+    background:#f8fafc;
+    padding:20px;
+    margin:20px 0;
+    border-radius:8px;
+}
+
+.definition{
+    background:#eff6ff;
+    padding:15px;
+    border-radius:8px;
+    margin:12px 0;
+}
+
+.syntax{
+    background:#fefce8;
+    padding:15px;
+    border-radius:8px;
+    margin:12px 0;
+}
+
+.example{
+    background:#f0fdf4;
+    padding:15px;
+    border-radius:8px;
+    margin:12px 0;
+}
+
+.important{
+    background:#fff7ed;
+    padding:15px;
+    border-radius:8px;
+    margin:12px 0;
+}
+
+.note{
+    background:#f5f3ff;
+    padding:15px;
+    border-radius:8px;
+    margin:12px 0;
+}
+
+/* CODE */
+pre{
+    background:#111827;
+    color:#e5e7eb;
+    padding:18px;
+    border-radius:8px;
+    overflow-x:auto;
+    margin:12px 0;
+    font-size:14px;
+}
+
+code{
+    font-family:"Courier New",monospace;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:15px 0;
+}
+
+th,td{
+    border:1px solid #d1d5db;
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    background:#dbeafe;
+}
+
+/* PROGRAM */
+.program{
+    border:2px solid #dbeafe;
+    border-radius:10px;
+    padding:20px;
+    margin:25px 0;
+    background:#fff;
+}
+
+.program h3{
+    background:#eff6ff;
+    padding:12px;
+    border-radius:7px;
+}
+
+/* QUESTION PAPER */
+.question-paper{
+    background:#fafafa;
+    border:2px solid #d1d5db;
+    border-radius:10px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.question{
+    margin:18px 0;
+}
+
+.answer{
+    background:#ecfdf5;
+    padding:15px;
+    border-left:4px solid #16a34a;
+    margin-top:8px;
+}
+
+/* BUTTON */
+.top-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 16px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* FOOTER */
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:30px;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    header h1{
+        font-size:25px;
+    }
+
+    nav a{
+        font-size:13px;
+        padding:7px 9px;
+    }
+
+    section{
+        padding:18px;
+    }
+
+    pre{
+        font-size:12px;
+    }
+
+    table{
+        font-size:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header id="home">
+    <h1>C Programming Study App</h1>
+    <p>Detailed Study Notes – Unit 3, Unit 4 and Unit 5</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#unit3">Unit 3</a>
+    <a href="#unit4">Unit 4</a>
+    <a href="#unit5">Unit 5</a>
+    <a href="#programs">Programs</a>
+    <a href="#paper2024">2024 Paper</a>
+    <a href="#paper2025">2025 Paper</a>
+</nav>
+
+<div class="container">
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Unit 3, Unit 4, Unit 5, topics, definitions, syntax..."
+        onkeyup="searchTopics()"
+    >
+</div>
+
+
+<!-- ====================================================== -->
+<!-- UNIT 3 -->
+<!-- ====================================================== -->
+
+<section id="unit3">
+
+<h2>UNIT 3 – ARRAYS AND STRINGS</h2>
+
+<div class="topic">
+
+<h3>1. A Simple Program Using Array</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+An array is a collection of elements of the same data type stored under one common name.
+</div>
+
+<h4>Explanation</h4>
+
+<p>
+An array allows us to store multiple values using a single variable name.
+Instead of declaring many separate variables, we can declare one array.
+Each element of an array is accessed using its index.
+</p>
+
+<p>
+In C, array indexing starts from <strong>0</strong>.
+Therefore, if an array contains 5 elements, its indexes are:
+0, 1, 2, 3 and 4.
+</p>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>data_type array_name[size];</code></pre>
+</div>
+
+<div class="example">
+<strong>Example:</strong>
+<pre><code>int marks[5];</code></pre>
+
+<p>
+Here, <strong>int</strong> is the data type,
+<strong>marks</strong> is the array name,
+and <strong>5</strong> represents the number of elements.
+</p>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>2. Array Initialization</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Array initialization means assigning initial values to the elements of an array when the array is declared.
+</div>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>data_type array_name[size] = {value1, value2, value3};</code></pre>
+</div>
+
+<div class="example">
+<strong>Example:</strong>
+<pre><code>int marks[5] = {80, 75, 90, 85, 70};</code></pre>
+</div>
+
+<h4>Explanation</h4>
+
+<p>
+The values are stored according to their indexes:
+</p>
+
+<table>
+<tr>
+<th>Index</th>
+<th>Value</th>
+</tr>
+<tr><td>0</td><td>80</td></tr>
+<tr><td>1</td><td>75</td></tr>
+<tr><td>2</td><td>90</td></tr>
+<tr><td>3</td><td>85</td></tr>
+<tr><td>4</td><td>70</td></tr>
+</table>
+
+<div class="important">
+<strong>Important Points:</strong>
+<ul>
+<li>Array indexing starts from 0.</li>
+<li>All elements normally have the same data type.</li>
+<li>The size determines the number of elements.</li>
+<li>Accessing an index outside the array can cause undefined behaviour.</li>
+</ul>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>3. One-Dimensional Array</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A one-dimensional array is an array in which elements are arranged in a single sequence.
+</div>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>data_type array_name[size];</code></pre>
+</div>
+
+<div class="example">
+<strong>Example:</strong>
+<pre><code>int numbers[5] = {10,20,30,40,50};
+
+printf("%d", numbers[2]);</code></pre>
+
+<p>
+The output is <strong>30</strong> because index 2 contains 30.
+</p>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>4. Two-Dimensional Arrays</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A two-dimensional array is an array arranged in rows and columns. It is commonly used to represent tables and matrices.
+</div>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>data_type array_name[rows][columns];</code></pre>
+</div>
+
+<div class="example">
+<strong>Example:</strong>
+<pre><code>int a[2][3];</code></pre>
+
+<p>
+This creates an array containing 2 rows and 3 columns.
+</p>
+</div>
+
+<table>
+<tr>
+<th></th>
+<th>Column 0</th>
+<th>Column 1</th>
+<th>Column 2</th>
+</tr>
+<tr>
+<th>Row 0</th>
+<td>a[0][0]</td>
+<td>a[0][1]</td>
+<td>a[0][2]</td>
+</tr>
+<tr>
+<th>Row 1</th>
+<td>a[1][0]</td>
+<td>a[1][1]</td>
+<td>a[1][2]</td>
+</tr>
+</table>
+
+</div>
+
+
+<div class="topic">
+
+<h3>5. Initializing a Two-Dimensional Array</h3>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>int matrix[2][3] = {
+    {1,2,3},
+    {4,5,6}
+};</code></pre>
+</div>
+
+<div class="example">
+<strong>Example:</strong>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a[2][3] = {
+        {1,2,3},
+        {4,5,6}
+    };
+
+    printf("%d\n", a[0][1]);
+    printf("%d\n", a[1][2]);
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>2
+6</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>6. Memory Map of a Two-Dimensional Array</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A memory map shows how array elements are arranged in memory.
+</div>
+
+<p>
+C stores two-dimensional arrays in <strong>row-major order</strong>.
+This means that the first row is stored completely before the second row.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+
+<pre><code>int a[2][3] = {
+    {10,20,30},
+    {40,50,60}
+};</code></pre>
+
+<p>
+Conceptually the memory order is:
+</p>
+
+<pre><code>10 → 20 → 30 → 40 → 50 → 60</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>7. Row-Major Order</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Row-major order is the method of storing a two-dimensional array row by row in consecutive memory locations.
+</div>
+
+<div class="example">
+<pre><code>int a[2][2] = {
+    {1,2},
+    {3,4}
+};</code></pre>
+
+<p>
+Memory order:
+</p>
+
+<pre><code>1 → 2 → 3 → 4</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>8. Strings in C</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A string in C is a sequence of characters terminated by the null character '\0'.
+</div>
+
+<p>
+C does not have a separate built-in string data type.
+Strings are stored using character arrays.
+</p>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>char string_name[size];</code></pre>
+</div>
+
+<div class="example">
+<pre><code>char name[20] = "Rahul";</code></pre>
+
+<p>
+Internally, the string is stored as:
+</p>
+
+<pre><code>R a h u l \0</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>9. String Initialization</h3>
+
+<div class="syntax">
+<strong>Method 1:</strong>
+<pre><code>char name[10] = "Hello";</code></pre>
+
+<strong>Method 2:</strong>
+<pre><code>char name[] = "Hello";</code></pre>
+
+<strong>Method 3:</strong>
+<pre><code>char name[6] = {'H','e','l','l','o','\0'};</code></pre>
+</div>
+
+<div class="important">
+<strong>Important:</strong>
+A string must have enough space for its characters plus the terminating null character.
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>10. Standard Library String Functions</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+String library functions are predefined functions provided by C for performing common operations on strings.
+</div>
+
+<p>
+The functions are declared in:
+</p>
+
+<pre><code>#include &lt;string.h&gt;</code></pre>
+
+<p>
+Important functions in this syllabus are:
+</p>
+
+<ul>
+<li>strlen()</li>
+<li>strcpy()</li>
+<li>strcat()</li>
+<li>strcmp()</li>
+</ul>
+
+</div>
+
+
+<div class="topic">
+
+<h3>11. strlen()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+strlen() returns the number of characters in a string, excluding the terminating null character.
+</div>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>strlen(string);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char name[] = "Computer";
+
+    printf("Length = %zu", strlen(name));
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>Length = 8</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>12. strcpy()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+strcpy() copies the contents of one string into another character array.
+</div>
+
+<div class="syntax">
+<strong>Syntax:</strong>
+<pre><code>strcpy(destination, source);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char source[] = "C Programming";
+    char destination[30];
+
+    strcpy(destination, source);
+
+    printf("%s", destination);
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>C Programming</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>13. strcat()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+strcat() joins one string to the end of another string.
+</div>
+
+<div class="syntax">
+<pre><code>strcat(destination, source);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char first[30] = "C ";
+    char second[] = "Programming";
+
+    strcat(first, second);
+
+    printf("%s", first);
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>C Programming</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>14. strcmp()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+strcmp() compares two strings lexicographically.
+</div>
+
+<div class="syntax">
+<pre><code>strcmp(string1, string2);</code></pre>
+</div>
+
+<p>
+The result is:
+</p>
+
+<ul>
+<li>0 if the strings are equal.</li>
+<li>A negative value if the first string is less than the second.</li>
+<li>A positive value if the first string is greater than the second.</li>
+</ul>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char a[] = "apple";
+    char b[] = "apple";
+
+    if(strcmp(a,b) == 0)
+        printf("Strings are equal");
+    else
+        printf("Strings are different");
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>Strings are equal</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>15. Two-Dimensional Array of Character</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A two-dimensional character array can be used to store multiple strings.
+</div>
+
+<div class="syntax">
+<pre><code>char names[number][length];</code></pre>
+</div>
+
+<div class="example">
+<pre><code>char names[3][20] = {
+    "Apple",
+    "Mango",
+    "Orange"
+};</code></pre>
+
+<p>
+Each row stores one string.
+</p>
+</div>
+
+<div class="important">
+<strong>Important:</strong>
+Although a two-dimensional character array can store multiple strings, programs for storing/displaying names and alphabetically sorting names are intentionally not included here because you asked for those programs to be removed.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- UNIT 4 -->
+<!-- ====================================================== -->
+
+<section id="unit4">
+
+<h2>UNIT 4 – FUNCTIONS AND POINTERS</h2>
+
+
+<div class="topic">
+
+<h3>1. Function</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A function is a self-contained block of C statements designed to perform a particular task.
+</div>
+
+<p>
+Functions make programs easier to understand, test and maintain.
+</p>
+
+<div class="syntax">
+<strong>General Syntax:</strong>
+
+<pre><code>return_type function_name(parameter_list)
+{
+    statements;
+}</code></pre>
+</div>
+
+<div class="example">
+<pre><code>int add(int a, int b)
+{
+    return a + b;
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>2. Function Declaration</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A function declaration tells the compiler about the function name, return type and parameters before the function is used.
+</div>
+
+<div class="syntax">
+<pre><code>return_type function_name(parameter_list);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>int add(int, int);</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>3. Function Definition</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A function definition contains the actual statements that perform the task of the function.
+</div>
+
+<div class="example">
+<pre><code>int add(int a, int b)
+{
+    return a + b;
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>4. Function Call</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A function call is a statement that transfers control to a function so that its statements can be executed.
+</div>
+
+<div class="example">
+<pre><code>result = add(10,20);</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>5. Passing Values Between Functions</h3>
+
+<p>
+Data can be passed to a function using parameters and arguments.
+</p>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int main()
+{
+    int result;
+
+    result = add(10,20);
+
+    printf("Sum = %d", result);
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>Sum = 30</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>6. Scope Rule of Functions</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Scope refers to the region of a program where an identifier such as a variable or function can be accessed.
+</div>
+
+<h4>Local Scope</h4>
+
+<p>
+A variable declared inside a function is generally accessible only within that function.
+</p>
+
+<h4>Global Scope</h4>
+
+<p>
+A variable declared outside functions can generally be accessed by functions in the same source file, subject to normal C scope rules.
+</p>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+
+int x = 100;
+
+void display()
+{
+    printf("%d", x);
+}
+
+int main()
+{
+    display();
+
+    return 0;
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>7. Calling Convention</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Calling convention refers to the rules used when a function is called, including how arguments are passed and how a return value is handled.
+</div>
+
+<p>
+In C, arguments are normally passed by value. When pointer arguments are used, the called function can access and modify the caller's objects through those pointers.
+</p>
+
+</div>
+
+
+<div class="topic">
+
+<h3>8. Return Type of Function</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+The return type specifies the type of value a function returns to the calling function.
+</div>
+
+<div class="example">
+<pre><code>int add(int a, int b)
+{
+    return a + b;
+}</code></pre>
+
+<p>
+The return type is <strong>int</strong>.
+</p>
+
+<p>
+A function that does not return a value can use:
+</p>
+
+<pre><code>void display()
+{
+    printf("Hello");
+}</code></pre>
+
+</div>
+
+
+<div class="topic">
+
+<h3>9. Call by Value</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+In call by value, a function receives copies of the argument values.
+</div>
+
+<div class="example">
+<pre><code>void change(int x)
+{
+    x = 100;
+}</code></pre>
+
+<p>
+Changing x inside the function does not change the original variable in the caller.
+</p>
+
+</div>
+
+
+<div class="topic">
+
+<h3>10. Call by Reference</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+In traditional C terminology, "call by reference" commonly refers to passing the address of an object to a function using a pointer so the function can modify the original object.
+</div>
+
+<div class="note">
+<strong>Important C fact:</strong>
+C itself uses pass-by-value. When a pointer is passed, the pointer value is copied, but both the caller and callee can use that pointer to access the same object.
+</div>
+
+<div class="syntax">
+<pre><code>void function(int *x)
+{
+    *x = 100;
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>11. Recursion</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Recursion is a process in which a function calls itself until a terminating condition is reached.
+</div>
+
+<div class="syntax">
+<pre><code>return_type function()
+{
+    if(condition)
+        return value;
+
+    return function();
+}</code></pre>
+</div>
+
+<div class="example">
+<strong>Factorial using recursion:</strong>
+
+<pre><code>int factorial(int n)
+{
+    if(n == 0)
+        return 1;
+
+    return n * factorial(n - 1);
+}</code></pre>
+</div>
+
+<div class="important">
+A recursive function must have a proper base condition; otherwise, recursive calls may continue indefinitely.
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>12. Introduction to Pointers</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A pointer is a variable that stores the memory address of another variable.
+</div>
+
+<div class="syntax">
+<pre><code>data_type *pointer_name;</code></pre>
+</div>
+
+<div class="example">
+<pre><code>int *p;</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>13. Pointer Declaration</h3>
+
+<div class="syntax">
+<pre><code>int *p;
+float *q;
+char *r;</code></pre>
+</div>
+
+<p>
+The type indicates the type of object that the pointer is intended to point to.
+</p>
+
+</div>
+
+
+<div class="topic">
+
+<h3>14. Pointer Initialization</h3>
+
+<div class="example">
+<pre><code>int number = 50;
+int *ptr = &number;</code></pre>
+</div>
+
+<p>
+Here, ptr contains the address of number.
+</p>
+
+</div>
+
+
+<div class="topic">
+
+<h3>15. Address Operator &amp;</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+The address operator &amp; produces the address of an object.
+</div>
+
+<div class="example">
+<pre><code>int x = 10;
+
+printf("%p", (void *)&amp;x);</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>16. Dereference Operator *</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+The dereference operator * is used with a pointer expression to access the object stored at the pointed-to address.
+</div>
+
+<div class="example">
+<pre><code>int x = 10;
+int *p = &amp;x;
+
+printf("%d", *p);</code></pre>
+
+<strong>Output:</strong>
+<pre><code>10</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>17. Pointer Notation</h3>
+
+<p>
+Pointers use two important forms:
+</p>
+
+<table>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td>&amp;x</td>
+<td>Address of x</td>
+</tr>
+<tr>
+<td>*p</td>
+<td>Value of the object pointed to by p</td>
+</tr>
+</table>
+
+</div>
+
+
+<div class="topic">
+
+<h3>18. Pointers and Functions</h3>
+
+<p>
+Pointers can be passed to functions when a function needs access to an object in the caller.
+</p>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+
+void change(int *x)
+{
+    *x = 100;
+}
+
+int main()
+{
+    int a = 10;
+
+    change(&amp;a);
+
+    printf("%d", a);
+
+    return 0;
+}</code></pre>
+
+<strong>Output:</strong>
+<pre><code>100</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>19. Types of Functions</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Functions in C can be classified based on whether they accept arguments and whether they return a value.
+</div>
+
+<table>
+<tr>
+<th>Type</th>
+<th>Arguments</th>
+<th>Return Value</th>
+</tr>
+<tr>
+<td>Type 1</td>
+<td>No arguments</td>
+<td>No return value</td>
+</tr>
+<tr>
+<td>Type 2</td>
+<td>Arguments</td>
+<td>No return value</td>
+</tr>
+<tr>
+<td>Type 3</td>
+<td>No arguments</td>
+<td>Returns a value</td>
+</tr>
+<tr>
+<td>Type 4</td>
+<td>Arguments</td>
+<td>Returns a value</td>
+</tr>
+</table>
+
+<h4>Example – Arguments and Return Value</h4>
+
+<pre><code>int add(int a, int b)
+{
+    return a + b;
+}</code></pre>
+
+</div>
+
+
+<div class="topic">
+
+<h3>20. Library Functions</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Library functions are predefined functions supplied by the C standard library.
+</div>
+
+<p>
+Examples include:
+</p>
+
+<ul>
+<li>printf() – formatted output</li>
+<li>scanf() – formatted input</li>
+<li>strlen() – string length</li>
+<li>strcpy() – copy string</li>
+<li>strcat() – concatenate strings</li>
+<li>strcmp() – compare strings</li>
+<li>sqrt() – square root</li>
+<li>pow() – power calculation</li>
+</ul>
+
+<div class="important">
+The appropriate header file must be included before using a library function.
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>21. User-Defined Functions</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A user-defined function is a function created by the programmer to perform a particular task.
+</div>
+
+<div class="syntax">
+<pre><code>return_type function_name(parameters)
+{
+    statements;
+}</code></pre>
+</div>
+
+<div class="example">
+<pre><code>int square(int n)
+{
+    return n * n;
+}</code></pre>
+
+<p>
+The function is created by the programmer rather than supplied as a standard library function.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- UNIT 5 -->
+<!-- ====================================================== -->
+
+<section id="unit5">
+
+<h2>UNIT 5 – MACROS, STRUCTURES AND FILES</h2>
+
+
+<div class="topic">
+
+<h3>1. Introduction to Macros</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A macro is a symbolic name or parameterized expression defined using the C preprocessor.
+</div>
+
+<p>
+Macros are processed before the actual compilation stage.
+</p>
+
+</div>
+
+
+<div class="topic">
+
+<h3>2. #define</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+#define is a preprocessor directive used to define macros.
+</div>
+
+<div class="syntax">
+<pre><code>#define NAME value</code></pre>
+</div>
+
+<div class="example">
+<pre><code>#define PI 3.14159</code></pre>
+</div>
+
+<p>
+Whenever the macro name is used, the preprocessor substitutes its replacement text according to macro rules.
+</p>
+
+</div>
+
+
+<div class="topic">
+
+<h3>3. Parameterized Macros</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A parameterized macro is a macro that accepts arguments.
+</div>
+
+<div class="syntax">
+<pre><code>#define MACRO(parameter) expression</code></pre>
+</div>
+
+<div class="example">
+<pre><code>#define SQUARE(x) ((x) * (x))</code></pre>
+
+<p>
+Parentheses are important in parameterized macros to avoid many operator-precedence problems.
+</p>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>4. Structures</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A structure is a user-defined data type that groups related variables, possibly of different data types, under one name.
+</div>
+
+<p>
+For example, student information may contain:
+</p>
+
+<ul>
+<li>Roll number – int</li>
+<li>Name – character array</li>
+<li>Marks – float</li>
+</ul>
+
+</div>
+
+
+<div class="topic">
+
+<h3>5. Declaring a Structure</h3>
+
+<div class="syntax">
+<pre><code>struct structure_name
+{
+    data_type member1;
+    data_type member2;
+};</code></pre>
+</div>
+
+<div class="example">
+<pre><code>struct Student
+{
+    int roll;
+    char name[30];
+    float marks;
+};</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>6. Structure Members</h3>
+
+<p>
+The variables declared inside a structure are called structure members.
+</p>
+
+<div class="example">
+<pre><code>struct Student
+{
+    int roll;
+    char name[30];
+    float marks;
+};</code></pre>
+
+<p>
+Here, roll, name and marks are structure members.
+</p>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>7. Accessing Structure Elements</h3>
+
+<div class="definition">
+Structure members are normally accessed using the dot operator.
+</div>
+
+<div class="syntax">
+<pre><code>structure_variable.member;</code></pre>
+</div>
+
+<div class="example">
+<pre><code>struct Student s;
+
+s.roll = 10;
+s.marks = 85.5;</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>8. Storing Structure Elements</h3>
+
+<div class="example">
+<pre><code>#include &lt;stdio.h&gt;
+
+struct Student
+{
+    int roll;
+    char name[30];
+    float marks;
+};
+
+int main()
+{
+    struct Student s;
+
+    s.roll = 1;
+
+    printf("Enter name: ");
+    scanf("%29s", s.name);
+
+    printf("Enter marks: ");
+    scanf("%f", &amp;s.marks);
+
+    printf("\nRoll = %d", s.roll);
+    printf("\nName = %s", s.name);
+    printf("\nMarks = %.2f", s.marks);
+
+    return 0;
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>9. Array of Structures</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+An array of structures is an array whose elements are structure variables of the same structure type.
+</div>
+
+<div class="syntax">
+<pre><code>struct Student students[50];</code></pre>
+</div>
+
+<div class="example">
+<pre><code>struct Student
+{
+    int roll;
+    char name[30];
+};
+
+struct Student students[3];</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>10. Unions</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A union is a user-defined type in which all members share the same memory location.
+</div>
+
+<div class="syntax">
+<pre><code>union union_name
+{
+    data_type member1;
+    data_type member2;
+};</code></pre>
+</div>
+
+<div class="example">
+<pre><code>union Data
+{
+    int i;
+    float f;
+    char ch;
+};</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>11. Structure vs Union</h3>
+
+<table>
+<tr>
+<th>Structure</th>
+<th>Union</th>
+</tr>
+<tr>
+<td>Members have separate storage within the structure object.</td>
+<td>Members share the same storage.</td>
+</tr>
+<tr>
+<td>Multiple members can hold values at the same time.</td>
+<td>Typically only one member's stored value is intended to be used at a time.</td>
+</tr>
+<tr>
+<td>Size is related to the storage required for all members plus possible padding.</td>
+<td>Size is based on the largest member, subject to alignment requirements.</td>
+</tr>
+</table>
+
+</div>
+
+
+<div class="topic">
+
+<h3>12. Introduction to Files</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A file is a named collection of data stored on secondary storage so that information can be retained after a program finishes execution.
+</div>
+
+<p>
+C provides file-handling functions through the standard I/O library.
+</p>
+
+<p>
+The main file pointer type is:
+</p>
+
+<pre><code>FILE *</code></pre>
+
+</div>
+
+
+<div class="topic">
+
+<h3>13. File Opening Modes</h3>
+
+<table>
+<tr>
+<th>Mode</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td>r</td>
+<td>Open an existing file for reading.</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Open for writing; creates a new file or truncates an existing file.</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Open for appending; writes occur at the end.</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>Open an existing file for reading and writing.</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>Open for reading and writing; creates/truncates the file.</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>Open for reading and appending.</td>
+</tr>
+</table>
+
+</div>
+
+
+<div class="topic">
+
+<h3>14. fopen()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+fopen() opens a file and associates it with a FILE stream.
+</div>
+
+<div class="syntax">
+<pre><code>FILE *fp;
+
+fp = fopen("filename", "mode");</code></pre>
+</div>
+
+<div class="example">
+<pre><code>FILE *fp;
+
+fp = fopen("data.txt", "w");
+
+if(fp == NULL)
+{
+    printf("File could not be opened");
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>15. fclose()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+fclose() closes an opened file stream.
+</div>
+
+<div class="syntax">
+<pre><code>fclose(file_pointer);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>fclose(fp);</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>16. Writing to Files</h3>
+
+<p>
+Writing means storing information into a file.
+</p>
+
+<p>
+The file should normally be opened in a mode that permits writing.
+</p>
+
+<div class="example">
+<pre><code>FILE *fp;
+
+fp = fopen("data.txt", "w");
+
+if(fp != NULL)
+{
+    fprintf(fp, "Hello C Programming");
+    fclose(fp);
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>17. Reading from Files</h3>
+
+<p>
+Reading means retrieving data that has previously been stored in a file.
+</p>
+
+<div class="example">
+<pre><code>FILE *fp;
+char word[50];
+
+fp = fopen("data.txt", "r");
+
+if(fp != NULL)
+{
+    fscanf(fp, "%49s", word);
+    printf("%s", word);
+    fclose(fp);
+}</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>18. fprintf()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+fprintf() writes formatted data to a file stream.
+</div>
+
+<div class="syntax">
+<pre><code>fprintf(file_pointer, "format", values);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>fprintf(fp, "Age = %d", age);</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>19. fscanf()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+fscanf() reads formatted data from a file stream.
+</div>
+
+<div class="syntax">
+<pre><code>fscanf(file_pointer, "format", &amp;variables);</code></pre>
+</div>
+
+<div class="example">
+<pre><code>fscanf(fp, "%d", &amp;number);</code></pre>
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>20. getw()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+getw() is an older, non-standard extension found in some C environments for reading an integer from a stream. It is not part of the ISO C standard.
+</div>
+
+<div class="syntax">
+<pre><code>getw(file_pointer);</code></pre>
+</div>
+
+<div class="note">
+For portable modern C programming, prefer standard functions such as fscanf(), fread(), or other appropriate standard I/O functions.
+</div>
+
+</div>
+
+
+<div class="topic">
+
+<h3>21. putw()</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+putw() is an older, non-standard extension found in some C environments for writing an integer to a stream. It is not part of the ISO C standard.
+</div>
+
+<div class="syntax">
+<pre><code>putw(integer, file_pointer);</code></pre>
+</div>
+
+<div class="note">
+As with getw(), portable C programs should generally use standard ISO C file functions instead.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- PROGRAMS -->
+<!-- ====================================================== -->
+
+<section id="programs">
+
+<h2>IMPORTANT C PROGRAMS – UNIT 3 TO UNIT 5</h2>
+
+
+<div class="program">
+
+<h3>Program 1 – Display Elements of an Array</h3>
+
+<h4>Aim</h4>
+<p>To read and display the elements of an array.</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Declare an integer array.</li>
+<li>Read the array elements.</li>
+<li>Use a loop to display each element.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a[5];
+    int i;
+
+    printf("Enter 5 elements:\n");
+
+    for(i = 0; i &lt; 5; i++)
+    {
+        scanf("%d", &amp;a[i]);
+    }
+
+    printf("Array elements are:\n");
+
+    for(i = 0; i &lt; 5; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter 5 elements:
+10
+20
+30
+40
+50
+
+Array elements are:
+10 20 30 40 50</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 2 – Find Length of a String Using strlen()</h3>
+
+<h4>Aim</h4>
+<p>To find the length of a string using strlen().</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Declare a character array.</li>
+<li>Read a string.</li>
+<li>Use strlen() to calculate its length.</li>
+<li>Display the length.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char str[100];
+
+    printf("Enter a string: ");
+    scanf("%99s", str);
+
+    printf("Length = %zu", strlen(str));
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter a string: computer
+Length = 8</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 3 – Copy a String Using strcpy()</h3>
+
+<h4>Aim</h4>
+<p>To copy one string into another using strcpy().</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Declare source and destination strings.</li>
+<li>Read the source string.</li>
+<li>Use strcpy() to copy it.</li>
+<li>Display the destination string.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char source[100];
+    char destination[100];
+
+    printf("Enter a string: ");
+    scanf("%99s", source);
+
+    strcpy(destination, source);
+
+    printf("Copied string = %s", destination);
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter a string: programming
+Copied string = programming</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 4 – Concatenate Two Strings</h3>
+
+<h4>Aim</h4>
+<p>To join two strings using strcat().</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Declare two character arrays.</li>
+<li>Read the strings.</li>
+<li>Use strcat() to join the second string to the first.</li>
+<li>Display the result.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char first[100];
+    char second[50];
+
+    printf("Enter first string: ");
+    scanf("%99s", first);
+
+    printf("Enter second string: ");
+    scanf("%49s", second);
+
+    strcat(first, second);
+
+    printf("Combined string = %s", first);
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter first string: C
+Enter second string: Programming
+
+Combined string = CProgramming</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 5 – Compare Two Strings</h3>
+
+<h4>Aim</h4>
+<p>To compare two strings using strcmp().</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Declare two strings.</li>
+<li>Read both strings.</li>
+<li>Use strcmp().</li>
+<li>Check whether the result is zero.</li>
+<li>Display the result.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char a[50];
+    char b[50];
+
+    printf("Enter first string: ");
+    scanf("%49s", a);
+
+    printf("Enter second string: ");
+    scanf("%49s", b);
+
+    if(strcmp(a,b) == 0)
+        printf("Strings are equal");
+    else
+        printf("Strings are different");
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter first string: apple
+Enter second string: apple
+
+Strings are equal</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 6 – Palindrome Using Function</h3>
+
+<h4>Aim</h4>
+<p>To check whether a number is a palindrome using a user-defined function.</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Read a number.</li>
+<li>Pass the number to the palindrome function.</li>
+<li>Reverse the number inside the function.</li>
+<li>Compare the reversed number with the original.</li>
+<li>Return the result.</li>
+<li>Display whether the number is palindrome or not.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int palindrome(int n)
+{
+    int original = n;
+    int reverse = 0;
+    int digit;
+
+    while(n != 0)
+    {
+        digit = n % 10;
+        reverse = reverse * 10 + digit;
+        n = n / 10;
+    }
+
+    return original == reverse;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    if(palindrome(n))
+        printf("Palindrome number");
+    else
+        printf("Not a palindrome number");
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter a number: 121
+Palindrome number</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 7 – Armstrong Number Using Function</h3>
+
+<h4>Aim</h4>
+<p>To check whether a three-digit number is an Armstrong number using a function.</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Read a three-digit number.</li>
+<li>Pass the number to the function.</li>
+<li>Extract each digit.</li>
+<li>Calculate the sum of cubes of the digits.</li>
+<li>Compare the sum with the original number.</li>
+<li>Display the result.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int isArmstrong(int n)
+{
+    int original = n;
+    int sum = 0;
+    int digit;
+
+    while(n != 0)
+    {
+        digit = n % 10;
+        sum = sum + digit * digit * digit;
+        n = n / 10;
+    }
+
+    return sum == original;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a three-digit number: ");
+    scanf("%d", &amp;n);
+
+    if(isArmstrong(n))
+        printf("Armstrong number");
+    else
+        printf("Not an Armstrong number");
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter a three-digit number: 153
+Armstrong number</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 8 – Prime Number Using Function</h3>
+
+<h4>Aim</h4>
+<p>To check whether a number is prime using a user-defined function.</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Read a number.</li>
+<li>Pass it to the prime-checking function.</li>
+<li>Check possible divisors.</li>
+<li>Return whether the number is prime.</li>
+<li>Display the result.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int isPrime(int n)
+{
+    int i;
+
+    if(n &lt; 2)
+        return 0;
+
+    for(i = 2; i &lt;= n / i; i++)
+    {
+        if(n % i == 0)
+            return 0;
+    }
+
+    return 1;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    if(isPrime(n))
+        printf("Prime number");
+    else
+        printf("Not a prime number");
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter a number: 17
+Prime number</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 9 – Factorial Using Function</h3>
+
+<h4>Aim</h4>
+<p>To calculate the factorial of a number using a user-defined function.</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Read a non-negative integer.</li>
+<li>Pass it to the factorial function.</li>
+<li>Multiply the numbers from 1 to n.</li>
+<li>Return the factorial.</li>
+<li>Display the result.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+long long factorial(int n)
+{
+    long long fact = 1;
+    int i;
+
+    for(i = 1; i &lt;= n; i++)
+    {
+        fact = fact * i;
+    }
+
+    return fact;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    printf("Factorial = %lld", factorial(n));
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Enter a number: 5
+Factorial = 120</code></pre>
+
+</div>
+
+
+<div class="program">
+
+<h3>Program 10 – Write and Read Data from a File</h3>
+
+<h4>Aim</h4>
+<p>To write data into a file and read the stored data.</p>
+
+<h4>Algorithm</h4>
+<ol>
+<li>Start.</li>
+<li>Open a file in write mode.</li>
+<li>Write data using fprintf().</li>
+<li>Close the file.</li>
+<li>Open the file in read mode.</li>
+<li>Read the data using fscanf().</li>
+<li>Display the data.</li>
+<li>Close the file.</li>
+<li>Stop.</li>
+</ol>
+
+<h4>Program Code</h4>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *fp;
+    char name[50];
+
+    fp = fopen("student.txt", "w");
+
+    if(fp == NULL)
+    {
+        printf("Unable to open file");
+        return 1;
+    }
+
+    fprintf(fp, "C Programming");
+    fclose(fp);
+
+    fp = fopen("student.txt", "r");
+
+    if(fp == NULL)
+    {
+        printf("Unable to open file");
+        return 1;
+    }
+
+    fscanf(fp, "%49s", name);
+
+    printf("Data read from file: %s", name);
+
+    fclose(fp);
+
+    return 0;
+}</code></pre>
+
+<h4>Sample Output</h4>
+
+<pre><code>Data read from file: C</code></pre>
+
+<p>
+The example uses a single word with fscanf("%49s", ...). For sentences containing spaces, a different input method should be used.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ====================================================== -->
+<!-- 2024 MODEL PAPER -->
+<!-- ====================================================== -->
+
+<section id="paper2024">
+
+<h2>2024 MODEL QUESTION PAPER – C PROGRAMMING</h2>
+
+<div class="question-paper">
+
+<h3>Part A – 2 Marks</h3>
+
+<div class="question">
+<strong>1.</strong> Define an array.
+<div class="answer">
+<strong>Answer:</strong>
+An array is a collection of elements of the same data type stored under one common name and accessed using indexes.
+</div>
+</div>
+
+<div class="question">
+<strong>2.</strong> What is a string in C?
+<div class="answer">
+<strong>Answer:</strong>
+A string is a sequence of characters stored in a character array and terminated by the null character '\0'.
+</div>
+</div>
+
+<div class="question">
+<strong>3.</strong> What is a function?
+<div class="answer">
+<strong>Answer:</strong>
+A function is a self-contained block of statements designed to perform a specific task.
+</div>
+</div>
+
+<div class="question">
+<strong>4.</strong> Define pointer.
+<div class="answer">
+<strong>Answer:</strong>
+A pointer is a variable that stores the address of another object.
+</div>
+</div>
+
+<div class="question">
+<strong>5.</strong> What is a structure?
+<div class="answer">
+<strong>Answer:</strong>
+A structure is a user-defined type that groups related members, which can have different data types.
+</div>
+</div>
+
+<div class="question">
+<strong>6.</strong> What is a macro?
+<div class="answer">
+<strong>Answer:</strong>
+A macro is a preprocessor definition created using directives such as #define.
+</div>
+</div>
+
+
+<h3>Part B – 3 Marks</h3>
+
+<div class="question">
+<strong>7.</strong> Explain array initialization with an example.
+
+<div class="answer">
+<strong>Answer:</strong>
+
+Array initialization assigns initial values to an array when it is declared.
+
+Example:
+
+<pre><code>int a[4] = {10,20,30,40};</code></pre>
+
+The elements are stored at indexes 0 to 3.
+</div>
+</div>
+
+<div class="question">
+<strong>8.</strong> Explain strlen() and strcpy().
+<div class="answer">
+<strong>Answer:</strong>
+strlen() returns the number of characters in a string, while strcpy() copies one string into another character array.
+</div>
+</div>
+
+<div class="question">
+<strong>9.</strong> What is recursion?
+<div class="answer">
+<strong>Answer:</strong>
+Recursion occurs when a function calls itself. A base condition is required to terminate the recursive process.
+</div>
+</div>
+
+
+<h3>Part C – 4 Marks</h3>
+
+<div class="question">
+<strong>10.</strong> Explain two-dimensional arrays with syntax and example.
+
+<div class="answer">
+<strong>Answer:</strong>
+
+Syntax:
+
+<pre><code>int a[rows][columns];</code></pre>
+
+Example:
+
+<pre><code>int a[2][3] = {
+    {1,2,3},
+    {4,5,6}
+};</code></pre>
+
+It contains 2 rows and 3 columns.
+</div>
+</div>
+
+
+<div class="question">
+<strong>11.</strong> Explain call by value and pointer-based modification of caller data.
+<div class="answer">
+<strong>Answer:</strong>
+In call by value, the function receives a copy of the argument. To modify the caller's object, C can pass its address using a pointer.
+</div>
+</div>
+
+
+<h3>Part D – 5 Marks</h3>
+
+<div class="question">
+<strong>12.</strong> Explain the four common categories of functions based on arguments and return values.
+<div class="answer">
+<strong>Answer:</strong>
+
+Functions can be categorized as:
+
+1. No arguments, no return value.
+2. Arguments, no return value.
+3. No arguments, returns a value.
+4. Arguments, returns a value.
+
+The fourth category can be represented as:
+
+<pre><code>int add(int a, int b)
+{
+    return a + b;
+}</code></pre>
+</div>
+</div>
+
+
+<div class="question">
+<strong>13.</strong> Explain structures and unions.
+<div class="answer">
+<strong>Answer:</strong>
+A structure stores its members as separate members within the structure object, while union members share the same storage. A structure can hold values for multiple members at the same time; a union is designed around shared storage.
+</div>
+</div>
+
+
+<h3>Part E – 6 Marks</h3>
+
+<div class="question">
+<strong>14.</strong> Write a C program to check whether a number is prime using a function.
+<div class="answer">
+See <strong>Program 8</strong> in the Programs section.
+</div>
+</div>
+
+
+<h3>Part F – 7 Marks</h3>
+
+<div class="question">
+<strong>15.</strong> Explain file handling in C with fopen(), fclose(), fprintf() and fscanf().
+<div class="answer">
+<strong>Answer:</strong>
+File handling allows programs to store and retrieve data from files.
+
+fopen() opens a file, fclose() closes it, fprintf() writes formatted data to a stream, and fscanf() reads formatted data from a stream.
+
+Example:
+
+<pre><code>FILE *fp;
+
+fp = fopen("data.txt", "w");
+
+if(fp != NULL)
+{
+    fprintf(fp, "Hello");
+    fclose(fp);
+}</code></pre>
+</div>
+</div>
+
+
+<h3>Part G – 8 Marks</h3>
+
+<div class="question">
+<strong>16.</strong> Explain strings and the functions strlen(), strcpy(), strcat() and strcmp() with examples.
+<div class="answer">
+<strong>Answer:</strong>
+A string is a null-terminated character sequence. The functions perform length calculation, copying, concatenation and comparison respectively.
+
+Examples:
+
+<pre><code>strlen(str);
+strcpy(dest, src);
+strcat(dest, src);
+strcmp(str1, str2);</code></pre>
+</div>
+</div>
+
+
+<h3>Part H – 10 Marks</h3>
+
+<div class="question">
+<strong>17.</strong> Explain functions and pointers in detail and write suitable examples.
+<div class="answer">
+<strong>Answer:</strong>
+A function is a reusable block of statements. A pointer stores an address. Functions can receive pointers when they need access to caller-owned objects.
+
+Example:
+
+<pre><code>void change(int *x)
+{
+    *x = 100;
+}</code></pre>
+
+Calling change(&amp;a) allows the function to modify the object a.
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ====================================================== -->
+<!-- 2025 MODEL PAPER -->
+<!-- ====================================================== -->
+
+<section id="paper2025">
+
+<h2>2025 MODEL QUESTION PAPER – C PROGRAMMING</h2>
+
+<div class="question-paper">
+
+<h3>Part A – 2 Marks</h3>
+
+<div class="question">
+<strong>1.</strong> What is a two-dimensional array?
+<div class="answer">
+A two-dimensional array stores elements in rows and columns.
+</div>
+</div>
+
+<div class="question">
+<strong>2.</strong> What is strlen()?
+<div class="answer">
+strlen() returns the number of characters in a string, excluding its terminating null character.
+</div>
+</div>
+
+<div class="question">
+<strong>3.</strong> What is recursion?
+<div class="answer">
+Recursion is the process of a function calling itself until a terminating condition is reached.
+</div>
+</div>
+
+<div class="question">
+<strong>4.</strong> What is a pointer?
+<div class="answer">
+A pointer is a variable that stores the address of another object.
+</div>
+</div>
+
+<div class="question">
+<strong>5.</strong> What is a union?
+<div class="answer">
+A union is a user-defined type whose members share the same memory storage.
+</div>
+</div>
+
+
+<h3>Part B – 3 Marks</h3>
+
+<div class="question">
+<strong>6.</strong> Explain row-major order.
+<div class="answer">
+In row-major order, elements of a two-dimensional array are stored row by row in consecutive memory locations.
+</div>
+</div>
+
+<div class="question">
+<strong>7.</strong> Explain strcpy() and strcat().
+<div class="answer">
+strcpy() copies one string to another, while strcat() appends one string to the end of another.
+</div>
+</div>
+
+<div class="question">
+<strong>8.</strong> Explain user-defined functions.
+<div class="answer">
+A user-defined function is created by the programmer to perform a specific task and can accept parameters and optionally return a value.
+</div>
+</div>
+
+
+<h3>Part C – 4 Marks</h3>
+
+<div class="question">
+<strong>9.</strong> Explain pointer declaration, initialization and dereferencing.
+<div class="answer">
+<pre><code>int x = 10;
+int *p = &amp;x;
+
+printf("%d", *p);</code></pre>
+
+The pointer p stores the address of x, and *p accesses the value stored in x.
+</div>
+</div>
+
+
+<h3>Part D – 5 Marks</h3>
+
+<div class="question">
+<strong>10.</strong> Explain structures with syntax and example.
+<div class="answer">
+<pre><code>struct Student
+{
+    int roll;
+    char name[30];
+    float marks;
+};</code></pre>
+
+A structure groups related data members under one structure type.
+</div>
+</div>
+
+
+<div class="question">
+<strong>11.</strong> Explain macros and parameterized macros.
+<div class="answer">
+<pre><code>#define PI 3.14159
+#define SQUARE(x) ((x) * (x))</code></pre>
+
+Macros are processed by the preprocessor before compilation.
+</div>
+</div>
+
+
+<h3>Part E – 6 Marks</h3>
+
+<div class="question">
+<strong>12.</strong> Write a C program to check whether a number is an Armstrong number using a function.
+<div class="answer">
+See <strong>Program 7</strong> in the Programs section.
+</div>
+</div>
+
+
+<h3>Part F – 7 Marks</h3>
+
+<div class="question">
+<strong>13.</strong> Explain file opening modes in C.
+<div class="answer">
+Important modes include r, w, a, r+, w+ and a+. Each mode determines whether the file is opened for reading, writing, appending or combinations of these operations.
+</div>
+</div>
+
+
+<h3>Part G – 8 Marks</h3>
+
+<div class="question">
+<strong>14.</strong> Explain call by value, pointer-based modification, recursion and function return types.
+<div class="answer">
+Call by value passes copies of argument values. Passing a pointer allows a function to access the caller's object. Recursion occurs when a function calls itself. The return type specifies the type of value returned by a function.
+</div>
+</div>
+
+
+<h3>Part H – 10 Marks</h3>
+
+<div class="question">
+<strong>15.</strong> Explain arrays, strings, functions, pointers, structures and files with suitable syntax and examples.
+<div class="answer">
+<strong>Answer:</strong>
+
+Arrays store multiple values of the same type.
+
+<pre><code>int a[5];</code></pre>
+
+Strings are null-terminated character arrays.
+
+<pre><code>char name[20] = "C";</code></pre>
+
+Functions are reusable blocks of code.
+
+<pre><code>int add(int a, int b)
+{
+    return a+b;
+}</code></pre>
+
+Pointers store addresses.
+
+<pre><code>int *p = &amp;x;</code></pre>
+
+Structures group related members.
+
+<pre><code>struct Student
+{
+    int roll;
+    float marks;
+};</code></pre>
+
+Files allow data to be stored persistently.
+
+<pre><code>FILE *fp;
+fp = fopen("data.txt","r");</code></pre>
+
+These features are fundamental parts of C programming.
+</div>
+</div>
+
+</div>
+</section>
+
+</div>
+
+
+<footer>
+<p><strong>C Programming Study App</strong></p>
+<p>Detailed Notes – Unit 3 | Unit 4 | Unit 5</p>
+<p>Arrays • Strings • Functions • Pointers • Macros • Structures • Files</p>
+</footer>
+
+
+<button class="top-button" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
+</button>
+
+
+<script>
+
+function searchTopics(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let sections =
+        document.querySelectorAll(
+            "section"
+        );
+
+    sections.forEach(function(section){
+
+        let text =
+            section.innerText.toLowerCase();
+
+        if(input === "" || text.includes(input)){
+            section.style.display = "";
+        }
+        else{
+            section.style.display = "none";
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
